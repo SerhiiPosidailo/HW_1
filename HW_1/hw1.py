@@ -10,7 +10,7 @@ new_st = []
 
 for i in st:
     if i.isdigit():
-        new_st += i
+        new_st.append(i)
 print(','.join(new_st))
 # -----------------------------------------------------------------------
 
@@ -29,7 +29,9 @@ res = []
 string = ''
 
 for i in new_st:
-    if i.isdigit():
+    if i.isalpha():
+        continue
+    elif i.isdigit():
         res.append(i)
     else:
         for y in i:
@@ -38,10 +40,7 @@ for i in new_st:
         res.append(string)
         string = ''
 
-if res[0] == '':
-    print(', '.join(res[1:]))
-else:
-    print(', '.join(res))
+print(', '.join(res))
 # -------------------------------------------------------------------
 
 # list comprehension
@@ -155,14 +154,14 @@ print(list2)
 
 
 # 2) вивести на екран пустий квадрат з "*" сторона якого вказана як агрумент функції
-def fun_square(n1, n2):
+def fun_square(n1):
     print('*' * n1)
-    for i in range(n2):
+    for i in range(n1-2):
         print(f'* {' ' * (n1 - 4)} *')
     print('*' * n1)
 
 
-fun_square(10, 10)
+fun_square(5)
 # 3) вывести табличку множення за допомогою цикла while
 
 size = 9
