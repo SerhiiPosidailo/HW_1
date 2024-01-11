@@ -37,7 +37,7 @@ class Rectangle:
         return self.x * self.y > other.x * other.y
 
     def __len__(self):
-        return (self.x + self.y) * 2
+        return self.x + self.y
 
 
 r1 = Rectangle(5, 5)
