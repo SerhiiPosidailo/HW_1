@@ -1,5 +1,4 @@
 from abc import ABC
-from typing import List
 
 """Створити клас Rectangle:
 -він має приймати дві сторони x,y
@@ -11,46 +10,45 @@ from typing import List
   >, < меньше більше
   при виклику метода len() підраховувати сумму сторін"""
 
-
-class Rectangle:
-
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __add__(self, other):
-        return self.x * self.y + other.x * other.y
-
-    def __sub__(self, other):
-        return self.x * self.y - other.x * other.y
-
-    def __eq__(self, other):
-        return self.x * self.y == other.x * other.y
-
-    def __ne__(self, other):
-        return self.x * self.y != other.x * other.y
-
-    def __lt__(self, other):
-        return self.x * self.y < other.x * other.y
-
-    def __gt__(self, other):
-        return self.x * self.y > other.x * other.y
-
-    def __len__(self):
-        return self.x + self.y
-
-
-r1 = Rectangle(5, 5)
-r2 = Rectangle(1, 2)
-
-print(r1 + r2)
-print(r1 - r2)
-print(r1 == r2)
-print(r1 != r2)
-print(r1 < r2)
-print(r1 > r2)
-print(len(r1))
-print(len(r2))
+# class Rectangle:
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#     def __add__(self, other):
+#         return self.x * self.y + other.x * other.y
+#
+#     def __sub__(self, other):
+#         return self.x * self.y - other.x * other.y
+#
+#     def __eq__(self, other):
+#         return self.x * self.y == other.x * other.y
+#
+#     def __ne__(self, other):
+#         return self.x * self.y != other.x * other.y
+#
+#     def __lt__(self, other):
+#         return self.x * self.y < other.x * other.y
+#
+#     def __gt__(self, other):
+#         return self.x * self.y > other.x * other.y
+#
+#     def __len__(self):
+#         return self.x + self.y
+#
+#
+# r1 = Rectangle(5, 5)
+# r2 = Rectangle(1, 2)
+#
+# print(r1 + r2)
+# print(r1 - r2)
+# print(r1 == r2)
+# print(r1 != r2)
+# print(r1 < r2)
+# print(r1 > r2)
+# print(len(r1))
+# print(len(r2))
 
 """створити класс Human (name, age)
 створити два класси Prince и Cinderella які наслідуються від Human:
@@ -62,60 +60,65 @@ print(len(r2))
 також має бути метод классу який буде виводити це значення"""
 
 
-class Human:
-
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-
-class Cinderella(Human):
-    count = 0
-
-    def __init__(self, name, age, shoe_size):
-        super().__init__(name, age)
-        self.shoe_size = shoe_size
-        Cinderella.count += 1
-
-    def __str__(self):
-        return str(self.__dict__)
-
-
-class Prince(Human):
-    def __init__(self, name, age, shoe_found):
-        super().__init__(name, age)
-        self.shoe_found = shoe_found
-
-    def find_shoe(self, cinderellas: List[Cinderella]):
-        for cinderella in cinderellas:
-            if self.shoe_found == cinderella.shoe_size:
-                return cinderella
-        return 'Not found'
-
-
-list_cinderellas = [
-    Cinderella('Diana', 19, 36),
-    Cinderella('Vika', 22, 28),
-    Cinderella('Tanya', 28, 34),
-    Cinderella('Sveta', 18, 35)
-]
-
-prince = Prince('Serj', 30, 28)
-
-print(prince.find_shoe(list_cinderellas))
-print(Cinderella.count)
+# class Human:
+#
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+#
+#
+# class Cinderella(Human):
+#     count = 0
+#
+#     def __init__(self, name, age, shoe_size):
+#         super().__init__(name, age)
+#         self.shoe_size = shoe_size
+#         Cinderella.count += 1
+#
+#     @classmethod
+#     def count_display(cls):
+#         print(cls.count)
+#
+#     def __str__(self):
+#         return str(self.__dict__)
+#
+#
+# class Prince(Human):
+#
+#     def __init__(self, name, age, shoe_found):
+#         super().__init__(name, age)
+#         self.shoe_found = shoe_found
+#
+#     def find_shoe(self, cinderellas: list[Cinderella]):
+#         for cinderella in cinderellas:
+#             if self.shoe_found == cinderella.shoe_size:
+#                 return cinderella
+#         return 'Not found'
+#
+#
+# list_cinderellas = [
+#     Cinderella('Diana', 19, 36),
+#     Cinderella('Vika', 22, 28),
+#     Cinderella('Tanya', 28, 34),
+#     Cinderella('Sveta', 18, 35)
+# ]
+#
+# prince = Prince('Serj', 30, 28)
+#
+# print(prince.find_shoe(list_cinderellas))
+# Cinderella.count_display()
 
 
 # 1) Створити абстрактний клас Printable який буде описувати абстрактний метод print()
+
+
 class Printable(ABC):
     def __init__(self):
         pass
 
-    def print_1(*args, **kwargs):
+    def print_1(self):
         pass
 
-    def __str__(self):
-        return str()
 
 # 2) Створити класи Book та Magazine в кожного в конструкторі змінна name, та який наслідуются від класу Printable
 
@@ -125,11 +128,17 @@ class Book(Printable):
         super().__init__()
         self.name = name
 
+    def print_1(self):
+        print(self.name)
+
 
 class Magazine(Printable):
     def __init__(self, name):
         super().__init__()
         self.name = name
+
+    def print_1(self):
+        print(self.name)
 
 
 """ 3) Створити клас Main в якому буде:
@@ -140,7 +149,7 @@ class Magazine(Printable):
 - метод show_all_books який буде виводити всі книги викликаючи метод print абстрактного классу"""
 
 
-class Main(Printable):
+class Main:
     printable_list = []
 
     def __init__(self):
@@ -167,13 +176,19 @@ class Main(Printable):
                 cls.print_1(book.name)
 
 
-Main.add(Magazine('BookStore'))
-Main.add(Book('Python'))
-Main.add(Magazine('BookStore2'))
-Main.add(Magazine('BookStore3'))
-Main.add(Book('Against the road to victory'))
-Main.add(Book('JavaScript'))
+book1 = Book('Python')
+book2 = Book('Against the road to victory')
+
+magazine1 = Magazine('BookStore')
+magazine2 = Magazine('BookStore2')
+magazine3 = Magazine('BookStore3')
+
+Main.add(book1)
+Main.add(book2)
+Main.add(magazine1)
+Main.add(magazine2)
+Main.add(magazine3)
 
 Main.show_all_magazines()
-print('-'*40)
+print('-' * 40)
 Main.show_all_books()
