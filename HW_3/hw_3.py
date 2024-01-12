@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 """Створити клас Rectangle:
 -він має приймати дві сторони x,y
@@ -113,10 +113,8 @@ from abc import ABC
 
 
 class Printable(ABC):
-    def __init__(self):
-        pass
-
-    def print_1(self):
+    @abstractmethod
+    def print(self):
         pass
 
 
@@ -125,19 +123,18 @@ class Printable(ABC):
 
 class Book(Printable):
     def __init__(self, name):
-        super().__init__()
         self.name = name
 
-    def print_1(self):
+    def print(self):
         print(self.name)
 
 
 class Magazine(Printable):
     def __init__(self, name):
-        super().__init__()
+
         self.name = name
 
-    def print_1(self):
+    def print(self):
         print(self.name)
 
 
@@ -150,7 +147,7 @@ class Magazine(Printable):
 
 
 class Main:
-    printable_list = []
+    __printable_list = []
 
     def __init__(self):
         super().__init__()
@@ -158,22 +155,19 @@ class Main:
     @classmethod
     def add(cls, value):
         if isinstance(value, Book) or isinstance(value, Magazine):
-            cls.printable_list.append(value)
+            cls.__printable_list.append(value)
 
     @classmethod
     def show_all_magazines(cls):
-        for magazine in cls.printable_list:
+        for magazine in cls.__printable_list:
             if isinstance(magazine, Magazine):
-                cls.print_1(magazine.name)
-
-    def print_1(*args, **kwargs):
-        print(*args, **kwargs)
+                magazine.print()
 
     @classmethod
     def show_all_books(cls):
-        for book in cls.printable_list:
+        for book in cls.__printable_list:
             if isinstance(book, Book):
-                cls.print_1(book.name)
+                book.print()
 
 
 book1 = Book('Python')
