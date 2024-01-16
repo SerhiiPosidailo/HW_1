@@ -27,12 +27,15 @@ data = [
 res = []
 
 max_len = max(len(sublist) for sublist in data)
-
 for i in range(max_len):
     for sublist in data:
         if i < len(sublist):
             current_id = sublist[i]["id"]
-            if current_id not in res:
-                res.append(current_id)
+            if i + 1 < len(sublist):
+                current_id_next = sublist[i+1]["id"]
+                if current_id not in res:
+                    res.append(current_id)
+                else:
+                    res.append(current_id_next)
 
 print(res)
